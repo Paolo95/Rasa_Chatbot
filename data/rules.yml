@@ -2,12 +2,12 @@ version: "3.0"
 
 rules:
 
-- rule: Say goodbye anytime the user says goodbye
+- rule: messaggio_introduttivo
   steps:
-  - intent: goodbye
-  - action: utter_goodbye
+  - intent: start
+  - action: utter_start
 
-- rule: Say 'I am a bot' anytime the user challenges
+- rule: messaggio_chiusura
   steps:
-  - intent: bot_challenge
-  - action: utter_iamabot
+  - intent: stop
+  - action: utter_stop
