@@ -1,10 +1,46 @@
 version: "3.0"
 
 stories:
-
 - story: percorso_felice
   steps:
   - intent: saluti
   - action: utter_saluti
   - intent: intent_felice
   - action: utter_felice
+
+
+
+
+- story: avvia_ordine
+  steps: 
+
+  - intent: start
+  - action: utter_start
+
+  - intent: inizio_form_ordine
+  - action: utter_inizio_form
+  - action: form_ordine
+  - active_loop: form_ordine
+
+  - action: utter_circuito
+  - intent: risposta_circuito
+
+  - action: utter_metodo_pagamento
+  - intent: risposta_metodo_pagamento
+
+  - intent: risposta_numero_carta
+  - intent: risposta_intestatario
+  - intent: risposta_nome
+  - intent: risposta_cognome
+  - intent: risposta_scadenza
+  - intent: risposta_cvv
+  - intent: risposta_tipologia_prodotto
+  - intent: risposta_nome_prodotto
+  - intent: risposta_quantita
+  - intent: risposta_email
+  - intent: risposta_numero_telefono
+  - intent: risposta_indirizzo_spedizione
+  - intent: risposta_conferma
+
+  - intent: stop
+  - action: utter_stop

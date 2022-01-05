@@ -7,6 +7,30 @@ intents:
   - start
   - stop
   - intent_felice
+  
+  - ordina
+  - selezione
+  - indirizzo
+  - acquistare
+  - inizio_form_ordine
+
+  - risposta_circuito
+  - risposta_metodo_pagamento
+
+  - risposta_numero_carta
+  - risposta_intestatario
+  - risposta_nome
+  - risposta_cognome
+  - risposta_scadenza
+  - risposta_cvv
+  - risposta_tipologia_prodotto
+  - risposta_nome_prodotto
+  - risposta_quantita
+  - risposta_email
+  - risposta_numero_telefono
+  - risposta_indirizzo_spedizione
+  - risposta_conferma
+
 
 responses:
   utter_saluti:
@@ -23,6 +47,157 @@ responses:
 
   utter_felice:
   - text: "Alla grande! Mi sento pronto per darti una mano!"
+
+  utter_inizio_form:
+  - text: "Benvenuto nella sezione ordini! di seguito verranno\n
+           richiesti i dati per effetuare l'ordine"
+  
+  utter_circuito:
+  - text: "inserisci il circuito che desideri utilizzare"
+
+  utter_metodo_pagamento:
+  - text: "inserisci il metodo di pagamento che desideri utilizzare"
+
+
+# form per comprare un prodotto
+entities:
+  - circuito
+  - metodo_pagamento
+  - numero_carta
+  - intestatario
+  - nome
+  - cognome
+  - scadenza
+  - cvv
+
+  - tipologia_prodotto
+  - nome_prodotto
+  - quantita
+  
+  - email
+  - numero_telefono
+  - indirizzo_spedizione
+  - conferma
+
+slots:
+  circuito:
+    type: text
+    mappings:
+    - type: from_entity
+      entity: circuito
+  
+  metodo_pagamento:
+    type: text
+    mappings:
+    - type: from_entity
+      entity: metodo_pagamento
+  
+  numero_carta:
+    type: text
+    mappings:
+    - type: from_entity
+      entity: numero_carta
+  
+  intestatario:
+    type: text
+    mappings:
+    - type: from_entity
+      entity: intestatario
+  
+  nome:
+    type: text
+    mappings:
+    - type: from_entity
+      entity: nome
+
+  cognome:
+    type: text
+    mappings:
+    - type: from_entity
+      entity: cognome
+  
+  scadenza:
+    type: text
+    mappings:
+    - type: from_entity
+      entity: scadenza
+  
+  cvv:
+    type: text
+    mappings:
+    - type: from_entity
+      entity: cvv
+  
+  tipologia_prodotto:
+    type: text
+    mappings:
+    - type: from_entity
+      entity: tipologia_prodotto
+  
+  nome_prodotto:
+    type: text
+    mappings:
+    - type: from_entity
+      entity: nome_prodotto
+  
+  quantita:
+    type: text
+    mappings:
+    - type: from_entity
+      entity: quantita
+  
+  email:
+    type: text
+    mappings:
+    - type: from_entity
+      entity: email
+  
+  numero_telefono:
+    type: text
+    mappings:
+    - type: from_entity
+      entity: numero_telefono
+  
+  indirizzo_spedizione:
+    type: text
+    mappings:
+    - type: from_entity
+      entity: indirizzo_spedizione
+  
+  conferma:
+    type: text
+    mappings:
+    - type: from_entity
+      entity: conferma
+
+forms:
+  form_ordine:
+    required_slots:
+      - circuito
+      - metodo_pagamento
+      - numero_carta
+      - intestatario
+      - nome
+      - cognome
+      - scadenza
+      - cvv
+
+      - tipologia_prodotto
+      - nome_prodotto
+      - quantita
+      
+      - email
+      - numero_telefono
+      - indirizzo_spedizione
+      - conferma
+
+    ignored_intents:
+      - saluti
+      - intent_felice
+
+# form per bestemmiare meglio
+
+
 
 
 

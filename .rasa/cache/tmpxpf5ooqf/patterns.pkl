@@ -1,0 +1,6 @@
+[
+  {
+    "name": "circuito",
+    "pattern": "(\\bvisa\\b|\\bmastercard\\b|\\bdiners\\b|\\bamerican\\ express\\b|\\bjcb\\b|\\bchina\\ union\\ pay\\b)"
+  }
+]

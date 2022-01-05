@@ -53,3 +53,26 @@ nlu:
     - come va?
     - come va la vita?
     - come butta?
+
+
+- intent: inizio_form_ordine
+  examples: |
+    - compra
+    - ordina
+    - acquista
+
+
+- intent: risposta_circuito
+  examples: |
+    - [visa](circuito)
+    - [american express](circuito)
+
+
+- lookup: circuito
+  examples: |
+    - visa
+    - mastercard
+    - diners
+    - american express
+    - jcb
+    - china union pay

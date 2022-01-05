@@ -1,0 +1,26 @@
+{
+  "lookup": {
+    "rules": {
+      "[{\"prev_action\": {\"action_name\": \"action_listen\"}, \"user\": {\"intent\": \"start\"}}]": "utter_start",
+      "[{\"prev_action\": {\"action_name\": \"action_listen\"}, \"user\": {\"intent\": \"start\"}}, {\"prev_action\": {\"action_name\": \"utter_start\"}, \"user\": {\"intent\": \"start\"}}]": "action_listen",
+      "[{\"prev_action\": {\"action_name\": \"action_listen\"}, \"user\": {\"intent\": \"stop\"}}]": "utter_stop",
+      "[{\"prev_action\": {\"action_name\": \"action_listen\"}, \"user\": {\"intent\": \"stop\"}}, {\"prev_action\": {\"action_name\": \"utter_stop\"}, \"user\": {\"intent\": \"stop\"}}]": "action_listen"
+    },
+    "rule_only_slots": [],
+    "rule_only_loops": [],
+    "rules_for_loop_unhappy_path": {
+      "[{\"prev_action\": {\"action_name\": \"utter_inizio_form\"}}, {\"active_loop\": {\"name\": \"form_ordine\"}, \"prev_action\": {\"action_name\": \"form_ordine\"}, \"user\": {\"intent\": \"inizio_form_ordine\"}}]": "do_not_predict_loop_action",
+      "[{\"prev_action\": {\"action_name\": \"form_ordine\"}}, {\"active_loop\": {\"name\": \"form_ordine\"}, \"prev_action\": {\"action_name\": \"utter_circuito\"}, \"user\": {\"intent\": \"inizio_form_ordine\"}}]": "do_not_predict_loop_action",
+      "[{\"prev_action\": {\"action_name\": \"action_listen\"}}, {\"active_loop\": {\"name\": \"form_ordine\"}, \"prev_action\": {\"action_name\": \"utter_metodo_pagamento\"}, \"user\": {\"intent\": \"risposta_circuito\"}}]": "do_not_predict_loop_action",
+      "[{\"prev_action\": {\"action_name\": \"action_listen\"}}, {\"active_loop\": {\"name\": \"form_ordine\"}, \"prev_action\": {\"action_name\": \"utter_stop\"}, \"user\": {\"intent\": \"stop\"}}]": "do_not_predict_loop_action"
+    },
+    "rules_not_in_stories": [
+      "handling active loops and forms - form_ordine",
+      "predicting default action with intent back",
+      "predicting default action with intent restart",
+      "handling active loops and forms - form_ordine - action_listen",
+      "predicting default action with intent session_start",
+      "[{\"prev_action\": {\"action_name\": \"action_listen\"}, \"user\": {\"intent\": \"stop\"}}, {\"prev_action\": {\"action_name\": \"utter_stop\"}, \"user\": {\"intent\": \"stop\"}}]"
+    ]
+  }
+}
