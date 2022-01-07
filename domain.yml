@@ -51,6 +51,9 @@ responses:
   utter_ask_intestatario_carta:
   - text: "Inserisci l'intestatario della carta"
 
+  utter_ask_cvv:
+  - text: "Inserisci il cvv della tua carta"
+
 
 entities:
 - circuito
@@ -128,12 +131,12 @@ slots:
 #    - type: from_entity
 #      entity: circuito    
   
-#  cvv:
-#    type: text
-#    influence_conversation: true
-#    mappings:
-#    - type: from_entity
-#      entity: circuito
+  cvv:
+    type: text
+    influence_conversation: true
+    mappings:
+    - type: from_entity
+      entity: cvv
 
   
 #  nome_prodotto:
@@ -185,6 +188,7 @@ forms:
       - circuito      
       - numero_carta
       - intestatario_carta
+      - cvv
 
 
 actions:

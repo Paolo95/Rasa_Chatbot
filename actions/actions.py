@@ -15,6 +15,7 @@ pattern_mastercard = "^(5[1-5][0-9]{14}|2(22[1-9][0-9]{12}|2[3-9][0-9]{13}|[3-6]
 pattern_jcb = "^(?:2131|1800|35\d{3})\d{11}$"
 pattern_union = "^(62[0-9]{14,17})$"
 pattern_intestatario = "^([a-z]+[,.]?[ ]?|[a-z]+['-]?)+$"
+pattern_cvv = "^\d{3}$"
 
 
 class ValidazioneFormOrdine(FormValidationAction):
@@ -37,7 +38,6 @@ class ValidazioneFormOrdine(FormValidationAction):
         dispatcher.utter_message(text=f"OK! Il circuito della tua carta di credito è stato accettato!")
         return {"circuito": slot_value}
 
-        return []
     
     def validate_tipologia_prodotto(
         self,
@@ -54,8 +54,7 @@ class ValidazioneFormOrdine(FormValidationAction):
         dispatcher.utter_message(text=f"OK!")
         return {"tipologia_prodotto": slot_value}
 
-        return []
-
+        
     def validate_numero_carta(
         self,
         slot_value: Any,
@@ -99,4 +98,17 @@ class ValidazioneFormOrdine(FormValidationAction):
         dispatcher.utter_message(text=f"OK!")
         return {"intestatario_carta": slot_value}
 
-        return []
+    def validate_cvv(
+        self,
+        slot_value: Any,
+        dispatcher: CollectingDispatcher,
+        tracker: Tracker,
+        domain: DomainDict,
+    ) -> Dict[Text, Any]:
+        """Validate 'cvv'."""
+
+        if re.match(pattern_cvv, str(slot_value)) is not None:
+            dispatcher.utter_message(text=f"Il cvv inserito è corretto!")
+            return {"cvv": slot_value}
+        else:
+            dispatcher.utter_message(text=f"Il cvv inserito è errato, riprova")

@@ -1,0 +1,52 @@
+[
+  {
+    "tag_name": "entity",
+    "ids_to_tags": {
+      "1": "B-circuito",
+      "2": "I-circuito",
+      "3": "L-circuito",
+      "4": "U-circuito",
+      "5": "B-cvv",
+      "6": "I-cvv",
+      "7": "L-cvv",
+      "8": "U-cvv",
+      "9": "B-intestatario_carta",
+      "10": "I-intestatario_carta",
+      "11": "L-intestatario_carta",
+      "12": "U-intestatario_carta",
+      "13": "B-numero_carta",
+      "14": "I-numero_carta",
+      "15": "L-numero_carta",
+      "16": "U-numero_carta",
+      "17": "B-tipologia_prodotto",
+      "18": "I-tipologia_prodotto",
+      "19": "L-tipologia_prodotto",
+      "20": "U-tipologia_prodotto",
+      "0": "O"
+    },
+    "tags_to_ids": {
+      "B-circuito": 1,
+      "I-circuito": 2,
+      "L-circuito": 3,
+      "U-circuito": 4,
+      "B-cvv": 5,
+      "I-cvv": 6,
+      "L-cvv": 7,
+      "U-cvv": 8,
+      "B-intestatario_carta": 9,
+      "I-intestatario_carta": 10,
+      "L-intestatario_carta": 11,
+      "U-intestatario_carta": 12,
+      "B-numero_carta": 13,
+      "I-numero_carta": 14,
+      "L-numero_carta": 15,
+      "U-numero_carta": 16,
+      "B-tipologia_prodotto": 17,
+      "I-tipologia_prodotto": 18,
+      "L-tipologia_prodotto": 19,
+      "U-tipologia_prodotto": 20,
+      "O": 0
+    },
+    "num_tags": 21
+  }
+]
