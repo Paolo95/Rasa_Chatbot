@@ -1,16 +1,13 @@
 version: "3.0"
-
 nlu:
 - intent: start
   examples: |
     - start
     - init
-
 - intent: stop
   examples: |
     - stop
     - quit
-
 - intent: saluti
   examples: |
     - ciao
@@ -21,9 +18,7 @@ nlu:
     - salve
     - buon pomeriggio
     - buona serata
-    - salve
     - eilà
-
 - intent: conferma
   examples: |
     - si
@@ -34,7 +29,6 @@ nlu:
     - confermo
     - va bene
     - ottimo
-  
 - intent: negazione
   examples: |
     - no
@@ -46,33 +40,45 @@ nlu:
     - non va bene
     - rifiuta
     - rifiuto
-
 - intent: intent_felice
   examples: |
     - come stai?
     - come va?
     - come va la vita?
     - come butta?
-
-
 - intent: inizio_form_ordine
   examples: |
     - compra
     - ordina
     - acquista
-
-
-- intent: risposta_circuito
+- intent: informazioni_ordine
   examples: |
+    - Vorrei ordinare un [notebook](tipologia_prodotto)
+    - [notebook](tipologia_prodotto)
+    - Voglio ordinare un [notebook](tipologia_prodotto) con carta [mastercard](circuito)
     - [visa](circuito)
-    - [american express](circuito)
+    - il numero della carta è [3542 2356 6543 5643](numero_carta)
+    - [3242 9900 6543 5321](numero_carta)
 
+- lookup: notebook
+  examples: |
+    - laptop
+    - netbook
+    - portatile
+    - computer portatile
 
 - lookup: circuito
   examples: |
     - visa
     - mastercard
-    - diners
-    - american express
-    - jcb
     - china union pay
+    - diners
+    - jcb
+
+- lookup: numero_carta
+  examples: |
+    - 3242 9900 6543 5321
+    - 2998 3234 2342 5234
+    - 4535 4323 7652 5463
+    - 3194 2435 3452 4564
+    - 4562 2456 2456 2245

@@ -12,13 +12,20 @@ rules:
   - intent: stop
   - action: utter_stop
 
-#- rule: attiva_form_ordine
-#  steps:
-#  - intent: inizio_form_ordine
-#  - action: utter_inizio_form
-#  - action: form_ordine
-#  - active_loop: form_ordine
-#  - action: utter_circuito
-#  - intent: risposta_circuito
-#  - action: utter_metodo_pagamento
-#  - intent: risposta_metodo_pagamento
+- rule: attiva_form_ordine
+  steps:
+  - intent: inizio_form_ordine
+  - action: utter_inizio_form
+  - action: form_ordine
+  - active_loop: form_ordine
+
+- rule: submit_form_ordine
+  condition:
+  - active_loop: form_ordine
+  steps:
+  - action: form_ordine
+  - active_loop: null
+  - slot_was_set:
+    - requested_slot: null
+  - action: utter_recap_ordine
+  - action: utter_submit

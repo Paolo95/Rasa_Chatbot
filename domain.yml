@@ -7,29 +7,8 @@ intents:
   - start
   - stop
   - intent_felice
-  
-  - ordina
-  - selezione
-  - indirizzo
-  - acquistare
   - inizio_form_ordine
-
-  - risposta_circuito
-  - risposta_metodo_pagamento
-
-  - risposta_numero_carta
-  - risposta_intestatario
-  - risposta_nome
-  - risposta_cognome
-  - risposta_scadenza
-  - risposta_cvv
-  - risposta_tipologia_prodotto
-  - risposta_nome_prodotto
-  - risposta_quantita
-  - risposta_email
-  - risposta_numero_telefono
-  - risposta_indirizzo_spedizione
-  - risposta_conferma
+  - informazioni_ordine
 
 
 responses:
@@ -49,157 +28,182 @@ responses:
   - text: "Alla grande! Mi sento pronto per darti una mano!"
 
   utter_inizio_form:
-  - text: "Benvenuto nella sezione ordini! di seguito verranno\n
-           richiesti i dati per effetuare l'ordine"
+  - text: "Benvenuto nella sezione ordini! \n
+           Di seguito verranno richiesti i dati per effettuare l'ordine"
   
-  utter_circuito:
-  - text: "inserisci il circuito che desideri utilizzare"
+  utter_recap_ordine:
+  - text: "L'ordine è il seguente"
+ 
+  utter_submit:
+  - text: "L'ordine è stato inoltrato!"
 
-  utter_metodo_pagamento:
-  - text: "inserisci il metodo di pagamento che desideri utilizzare"
+  utter_ask_tipologia_prodotto:
+  - text: "Che tipologia di prodotto desideri?"
+
+  utter_ask_circuito:
+  - text: "Che circuito ha la tua carta?"
+
+  utter_ask_numero_carta:
+  - text: "Inserisci il numero della carta"
+
+  utter_ask_pagamento:
+  - text: "Inserisci il metodo di pagamento che desideri utilizzare"
 
 
-# form per comprare un prodotto
 entities:
-  - circuito
-  - metodo_pagamento
-  - numero_carta
-  - intestatario
-  - nome
-  - cognome
-  - scadenza
-  - cvv
+- circuito
+- metodo_pagamento
+- numero_carta
+- intestatario
+- nome
+- cognome
+- scadenza
+- cvv
 
-  - tipologia_prodotto
-  - nome_prodotto
-  - quantita
+- tipologia_prodotto
+- nome_prodotto
+- quantita
   
-  - email
-  - numero_telefono
-  - indirizzo_spedizione
-  - conferma
+- email
+- numero_telefono
+- indirizzo_spedizione
+- conferma
 
 slots:
   circuito:
     type: text
+    influence_conversation: true
     mappings:
     - type: from_entity
       entity: circuito
   
-  metodo_pagamento:
+  tipologia_prodotto:
     type: text
+    influence_conversation: true
     mappings:
     - type: from_entity
-      entity: metodo_pagamento
+      entity: tipologia_prodotto   
+  
+#  metodo_pagamento:
+#    type: text
+#    influence_conversation: true
+#    mappings:
+#    - type: from_entity
+#      entity: metodo_pagamento
   
   numero_carta:
     type: text
+    influence_conversation: true
     mappings:
     - type: from_entity
-      entity: numero_carta
+      entity: numero_carta   
   
-  intestatario:
-    type: text
-    mappings:
-    - type: from_entity
-      entity: intestatario
-  
-  nome:
-    type: text
-    mappings:
-    - type: from_entity
-      entity: nome
+#  intestatario:
+#    type: text
+#    influence_conversation: true
+#    mappings:
+#    - type: from_entity
+#      entity: circuito    
 
-  cognome:
-    type: text
-    mappings:
-    - type: from_entity
-      entity: cognome
+#  nome:
+#    type: text
+#    influence_conversation: true
+#    mappings:
+#    - type: from_entity
+#      entity: circuito    
+
+#  cognome:
+#    type: text
+#    influence_conversation: true
+#    mappings:
+#    - type: from_entity
+#      entity: circuito    
   
-  scadenza:
-    type: text
-    mappings:
-    - type: from_entity
-      entity: scadenza
+#  scadenza:
+#    type: text
+#    influence_conversation: true
+#    mappings:
+#    - type: from_entity
+#      entity: circuito    
   
-  cvv:
-    type: text
-    mappings:
-    - type: from_entity
-      entity: cvv
+#  cvv:
+#    type: text
+#    influence_conversation: true
+#    mappings:
+#    - type: from_entity
+#      entity: circuito
+
   
-  tipologia_prodotto:
-    type: text
-    mappings:
-    - type: from_entity
-      entity: tipologia_prodotto
+#  nome_prodotto:
+#    type: text
+#    influence_conversation: true
+#    mappings:
+#    - type: from_entity
+#      entity: circuito    
   
-  nome_prodotto:
-    type: text
-    mappings:
-    - type: from_entity
-      entity: nome_prodotto
+#  quantita:
+#    type: text
+#    influence_conversation: true
+#    mappings:
+#    - type: from_entity
+#      entity: circuito    
   
-  quantita:
-    type: text
-    mappings:
-    - type: from_entity
-      entity: quantita
+#  email:
+#    type: text
+#    influence_conversation: true
+#    mappings:
+#    - type: from_entity
+#      entity: circuito
+
+#  numero_telefono:
+#    type: text
+#    influence_conversation: true
+#    mappings:
+#    - type: from_entity
+#      entity: circuito
   
-  email:
-    type: text
-    mappings:
-    - type: from_entity
-      entity: email
-  
-  numero_telefono:
-    type: text
-    mappings:
-    - type: from_entity
-      entity: numero_telefono
-  
-  indirizzo_spedizione:
-    type: text
-    mappings:
-    - type: from_entity
-      entity: indirizzo_spedizione
-  
-  conferma:
-    type: text
-    mappings:
-    - type: from_entity
-      entity: conferma
+#  indirizzo_spedizione:
+#    type: text
+#    influence_conversation: true
+#    mappings:
+#    - type: from_entity
+#      entity: circuito  
+
+#  conferma:
+#    type: text
+#    influence_conversation: true
+#    mappings:
+#    - type: from_entity
+#      entity: circuito
 
 forms:
   form_ordine:
     required_slots:
-      - circuito
-      - metodo_pagamento
-      - numero_carta
-      - intestatario
-      - nome
-      - cognome
-      - scadenza
-      - cvv
-
       - tipologia_prodotto
-      - nome_prodotto
-      - quantita
-      
-      - email
-      - numero_telefono
-      - indirizzo_spedizione
-      - conferma
-
-    ignored_intents:
-      - saluti
-      - intent_felice
-
-# form per bestemmiare meglio
+      - circuito      
+      - numero_carta
 
 
+#    metodo_pagamento:
+#      - entity: metodo_pagamento
+#        type: from_entity
+#      - numero_carta
+#      - intestatario
+#      - nome
+#      - cognome
+#      - scadenza
+#      - cvv
 
+#      - nome_prodotto
+#      - quantita
+#      
+#      - email
+#      - numero_telefono
+#      - indirizzo_spedizione
+#      - conferma
 
+actions:
+- validate_form_ordine
 
 session_config:
   session_expiration_time: 60
