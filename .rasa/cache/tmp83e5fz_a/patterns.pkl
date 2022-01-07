@@ -1,0 +1,18 @@
+[
+  {
+    "name": "notebook",
+    "pattern": "(\\blaptop\\b|\\bnetbook\\b|\\bportatile\\b|\\bcomputer\\ portatile\\b)"
+  },
+  {
+    "name": "circuito",
+    "pattern": "(\\bvisa\\b|\\bmastercard\\b|\\bchina\\ union\\ pay\\b|\\bdiners\\b|\\bdiners\\ club\\b|\\bjcb\\b|\\bvisa\\ mastercard\\b)"
+  },
+  {
+    "name": "numero_carta",
+    "pattern": "(\\b3242\\ 9900\\ 6543\\ 5321\\b|\\b2998\\ 3234\\ 2342\\ 5234\\b|\\b4535\\ 4323\\ 7652\\ 5463\\b|\\b3194\\ 2435\\ 3452\\ 4564\\b|\\b4562\\ 2456\\ 2456\\ 2245\\b)"
+  },
+  {
+    "name": "intestatario_carta",
+    "pattern": "(\\bSimone\\ Onori\\b|\\bJohn\\ J\\.\\ Smith\\b|\\bR\\.\\ J\\.\\ Tannen\\b|\\bBeef\\ Tannen\\b|\\bMarty\\ McFly\\b|\\bSimone\\ Francalancia\\b|\\bNicola\\ Silveri\\b)"
+  }
+]

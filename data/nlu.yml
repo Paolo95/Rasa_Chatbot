@@ -59,6 +59,8 @@ nlu:
     - [visa](circuito)
     - il numero della carta è [3542 2356 6543 5643](numero_carta)
     - [3242 9900 6543 5321](numero_carta)
+    - L'intestatario della carta è [Compagnoni Paolo](intestatario_carta)
+    - [Compagnoni Paolo](intestatario_carta)
 
 - lookup: notebook
   examples: |
@@ -73,7 +75,9 @@ nlu:
     - mastercard
     - china union pay
     - diners
+    - diners club
     - jcb
+    - visa mastercard
 
 - lookup: numero_carta
   examples: |
@@ -82,3 +86,13 @@ nlu:
     - 4535 4323 7652 5463
     - 3194 2435 3452 4564
     - 4562 2456 2456 2245
+
+- lookup: intestatario_carta
+  examples: |
+    - Simone Onori
+    - John J. Smith
+    - R. J. Tannen
+    - Beef Tannen
+    - Marty McFly
+    - Simone Francalancia
+    - Nicola Silveri
