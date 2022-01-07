@@ -4,15 +4,19 @@ digraph  {
 1 [class=active, fontsize=12, label=action_session_start];
 2 [class=active, fontsize=12, label=utter_inizio_form];
 3 [class=active, fontsize=12, label=form_ordine];
-7 [class="dashed active", fontsize=12, label=utter_recap_ordine];
-8 [class="intent active", fillcolor=lightblue, label="/inizio_form_ordine", shape=rect, style=filled];
-9 [class="intent active", fillcolor=lightblue, label="/informazioni_ordine", shape=rect, style=filled];
+8 [class=active, fontsize=12, label=utter_recap_ordine];
+9 [class=active, fontsize=12, label=utter_submit];
+10 [class="intent dashed active", label="  ?  ", shape=rect];
+11 [class="intent active", fillcolor=lightblue, label="/inizio_form_ordine", shape=rect, style=filled];
+12 [class="intent active", fillcolor=lightblue, label="/informazioni_ordine", shape=rect, style=filled];
 0 -> "-1"  [class="", key=NONE, label=""];
 0 -> 1  [class=active, key=NONE, label=""];
-1 -> 8  [class=active, key=0];
+1 -> 11  [class=active, key=0];
 2 -> 3  [class=active, key=NONE, label=""];
-3 -> 7  [class=active, key=NONE, label=""];
-3 -> 9  [class=active, key=0];
-8 -> 2  [class=active, key=0];
-9 -> 3  [class=active, key=0];
+3 -> 8  [class=active, key=NONE, label=""];
+3 -> 12  [class=active, key=0];
+8 -> 9  [class=active, key=NONE, label=""];
+9 -> 10  [class=active, key=NONE, label=""];
+11 -> 2  [class=active, key=0];
+12 -> 3  [class=active, key=0];
 }

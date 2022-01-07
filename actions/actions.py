@@ -8,7 +8,12 @@ from rasa_sdk.types import DomainDict
 
 VALORI_CONSENTITI_CIRCUITO = ["visa", "mastercard", "diners", "american express", "china union pay"]
 VALORI_CONSENTITI_PC = ["notebook", "pc"]
-pattern = '([0-9]+( [0-9]+)+)'
+pattern_visa = "^4[0-9]{12}(?:[0-9]{3})?$"
+pattern_visa_mastercard = "^(?:4[0-9]{12}(?:[0-9]{3})?|5[1-5][0-9]{14})$"
+pattern_diners = "^3(?:0[0-5]|[68][0-9])[0-9]{11}$"
+pattern_mastercard = "^(5[1-5][0-9]{14}|2(22[1-9][0-9]{12}|2[3-9][0-9]{13}|[3-6][0-9]{14}|7[0-1][0-9]{13}|720[0-9]{12}))$"
+pattern_jcb = "^(?:2131|1800|35\d{3})\d{11}$"
+pattern_union = "^(62[0-9]{14,17})$"
 
 
 class ValidazioneFormOrdine(FormValidationAction):
@@ -58,11 +63,25 @@ class ValidazioneFormOrdine(FormValidationAction):
         domain: DomainDict,
     ) -> Dict[Text, Any]:
         """Validate 'numero_carta'."""
-        
-        if re.match(pattern, slot_value):
-            dispatcher.utter_message(text=f"Numero di carta errato, riprova")
-            return {"numero_carta":None}
-        dispatcher.utter_message(text=f"Il numero della carta è corretto!")
-        return {"numero_carta": slot_value}
 
+        if re.match(pattern_visa,str(slot_value)) or re.match(pattern_visa_mastercard,str(slot_value)) is not None:
+            dispatcher.utter_message(text=f"Il numero della carta VISA o VISA MASTERCARD è corretto!")
+            return {"numero_carta": slot_value}          
+        elif re.match(pattern_diners, str(slot_value)) is not None:
+            dispatcher.utter_message(text=f"Il numero della carta DINERS è corretto!")
+            return {"numero_carta": slot_value}
+        elif re.match(pattern_mastercard, str(slot_value)) is not None:
+            dispatcher.utter_message(text=f"Il numero della carta MASTERCARD è corretto!")
+            return {"numero_carta": slot_value}
+        elif re.match(pattern_jcb, str(slot_value)) is not None:
+            dispatcher.utter_message(text=f"Il numero della carta JCB è corretto!")
+            return {"numero_carta": slot_value}
+        elif re.match(pattern_union, str(slot_value)) is not None:
+            dispatcher.utter_message(text=f"Il numero della carta UNION è corretto!")
+            return {"numero_carta": slot_value}
+        else:           
+            dispatcher.utter_message(text=f"Il numero di carta è errato, riprova")
+            return {"numero_carta":None}            
+                    
+                
         return []

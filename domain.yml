@@ -28,8 +28,7 @@ responses:
   - text: "Alla grande! Mi sento pronto per darti una mano!"
 
   utter_inizio_form:
-  - text: "Benvenuto nella sezione ordini! \n
-           Di seguito verranno richiesti i dati per effettuare l'ordine"
+  - text: "Benvenuto nella sezione ordini!\nDi seguito verranno richiesti i dati per effettuare l'ordine"
   
   utter_recap_ordine:
   - text: "L'ordine è il seguente"

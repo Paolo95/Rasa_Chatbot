@@ -1,0 +1,36 @@
+[
+  {
+    "tag_name": "entity",
+    "ids_to_tags": {
+      "1": "B-circuito",
+      "2": "I-circuito",
+      "3": "L-circuito",
+      "4": "U-circuito",
+      "5": "B-numero_carta",
+      "6": "I-numero_carta",
+      "7": "L-numero_carta",
+      "8": "U-numero_carta",
+      "9": "B-tipologia_prodotto",
+      "10": "I-tipologia_prodotto",
+      "11": "L-tipologia_prodotto",
+      "12": "U-tipologia_prodotto",
+      "0": "O"
+    },
+    "tags_to_ids": {
+      "B-circuito": 1,
+      "I-circuito": 2,
+      "L-circuito": 3,
+      "U-circuito": 4,
+      "B-numero_carta": 5,
+      "I-numero_carta": 6,
+      "L-numero_carta": 7,
+      "U-numero_carta": 8,
+      "B-tipologia_prodotto": 9,
+      "I-tipologia_prodotto": 10,
+      "L-tipologia_prodotto": 11,
+      "U-tipologia_prodotto": 12,
+      "O": 0
+    },
+    "num_tags": 13
+  }
+]
