@@ -74,6 +74,13 @@ nlu:
     - Ne voglio acquistare [2](quantita)
     - [compagnonipaolo95@gmail.com](email)
     - La mia email è [segreteria@univpm.it](email)
+    - il mio numero di telefono è [+393407015008](numero_telefono)
+    - il mio telefono è [3397619766](numero_telefono)
+    - numero di telefono [339 6504882](numero_telefono)
+    - il mio numero di cellulare è [+393283550125](numero_telefono)
+    - il mio cellulare è [329 6554126](numero_telefono)
+    - numero di cellulare [3354501894](numero_telefono)
+    - [339 7619766](numero_telefono)
 
 - lookup: notebook
   examples: |
@@ -134,6 +141,10 @@ nlu:
 - regex: email
   examples: |
     - ^([a-zA-Z0-9_\-\.]+)@([a-zA-Z0-9_\-\.]+)\.([a-zA-Z]{2,5})$
+
+- regex: numero_telefono
+  examples: |
+    - ^((00|\+)39[\. ]??)??3\d{2}[\. ]??\d{6,7}$
 
 - lookup: email
   examples: |

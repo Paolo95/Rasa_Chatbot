@@ -66,6 +66,10 @@ responses:
   utter_ask_email:
   - text: "Inserisci la tua e-mail"
 
+  utter_ask_numero_telefono:
+  - text: "Inserisci il tuo numero di cellulare"
+
+
 
 entities:
 - circuito
@@ -156,12 +160,12 @@ slots:
     - type: from_entity
       entity: email
 
-#  numero_telefono:
-#    type: text
-#    influence_conversation: true
-#    mappings:
-#    - type: from_entity
-#      entity: circuito
+  numero_telefono:
+    type: text
+    influence_conversation: true
+    mappings:
+    - type: from_entity
+      entity: numero_telefono
   
 #  indirizzo_spedizione:
 #    type: text
@@ -189,6 +193,7 @@ forms:
       - nome_prodotto
       - quantita
       - email
+      - numero_telefono
 
 
 actions:

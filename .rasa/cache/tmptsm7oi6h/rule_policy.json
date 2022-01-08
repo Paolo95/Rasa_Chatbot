@@ -1,0 +1,39 @@
+{
+  "lookup": {
+    "rules": {
+      "[{\"prev_action\": {\"action_name\": \"action_listen\"}, \"user\": {\"intent\": \"stop\"}}]": "utter_stop",
+      "[{\"prev_action\": {\"action_name\": \"action_listen\"}, \"user\": {\"intent\": \"stop\"}}, {\"prev_action\": {\"action_name\": \"utter_stop\"}, \"user\": {\"intent\": \"stop\"}}]": "action_listen",
+      "[{\"prev_action\": {\"action_name\": \"action_listen\"}, \"user\": {\"intent\": \"inizio_form_ordine\"}}]": "utter_inizio_form",
+      "[{\"prev_action\": {\"action_name\": \"action_listen\"}, \"user\": {\"intent\": \"inizio_form_ordine\"}}, {\"prev_action\": {\"action_name\": \"utter_inizio_form\"}, \"user\": {\"intent\": \"inizio_form_ordine\"}}]": "form_ordine",
+      "[{\"prev_action\": {\"action_name\": \"action_listen\"}, \"user\": {\"intent\": \"inizio_form_ordine\"}}, {\"prev_action\": {\"action_name\": \"utter_inizio_form\"}, \"user\": {\"intent\": \"inizio_form_ordine\"}}, {\"active_loop\": {\"name\": \"form_ordine\"}, \"prev_action\": {\"action_name\": \"form_ordine\"}, \"user\": {\"intent\": \"inizio_form_ordine\"}}]": "action_listen",
+      "[{\"prev_action\": {\"action_name\": \"action_listen\"}, \"user\": {\"intent\": \"start\"}}]": "utter_start",
+      "[{\"prev_action\": {\"action_name\": \"action_listen\"}, \"user\": {\"intent\": \"start\"}}, {\"prev_action\": {\"action_name\": \"utter_start\"}, \"user\": {\"intent\": \"start\"}}]": "action_listen",
+      "[{\"active_loop\": {\"name\": \"should_not_be_set\"}, \"prev_action\": {\"action_name\": \"form_ordine\"}}]": "utter_recap_ordine",
+      "[{\"active_loop\": {\"name\": \"should_not_be_set\"}, \"prev_action\": {\"action_name\": \"form_ordine\"}}, {\"active_loop\": {\"name\": \"should_not_be_set\"}, \"prev_action\": {\"action_name\": \"utter_recap_ordine\"}}]": "utter_submit",
+      "[{\"active_loop\": {\"name\": \"should_not_be_set\"}, \"prev_action\": {\"action_name\": \"form_ordine\"}}, {\"active_loop\": {\"name\": \"should_not_be_set\"}, \"prev_action\": {\"action_name\": \"utter_recap_ordine\"}}, {\"active_loop\": {\"name\": \"should_not_be_set\"}, \"prev_action\": {\"action_name\": \"utter_submit\"}}]": "action_listen"
+    },
+    "rule_only_slots": [],
+    "rule_only_loops": [
+      "form_ordine"
+    ],
+    "rules_for_loop_unhappy_path": {
+      "[{\"prev_action\": {\"action_name\": \"utter_inizio_form\"}}, {\"active_loop\": {\"name\": \"form_ordine\"}, \"prev_action\": {\"action_name\": \"form_ordine\"}, \"user\": {\"intent\": \"inizio_form_ordine\"}}]": "do_not_predict_loop_action"
+    },
+    "rules_not_in_stories": [
+      "[{\"prev_action\": {\"action_name\": \"action_listen\"}, \"user\": {\"intent\": \"start\"}}]",
+      "[{\"prev_action\": {\"action_name\": \"action_listen\"}, \"user\": {\"intent\": \"inizio_form_ordine\"}}]",
+      "[{\"prev_action\": {\"action_name\": \"action_listen\"}, \"user\": {\"intent\": \"stop\"}}, {\"prev_action\": {\"action_name\": \"utter_stop\"}, \"user\": {\"intent\": \"stop\"}}]",
+      "[{\"active_loop\": {\"name\": \"should_not_be_set\"}, \"prev_action\": {\"action_name\": \"form_ordine\"}}]",
+      "predicting default action with intent back",
+      "[{\"active_loop\": {\"name\": \"should_not_be_set\"}, \"prev_action\": {\"action_name\": \"form_ordine\"}}, {\"active_loop\": {\"name\": \"should_not_be_set\"}, \"prev_action\": {\"action_name\": \"utter_recap_ordine\"}}, {\"active_loop\": {\"name\": \"should_not_be_set\"}, \"prev_action\": {\"action_name\": \"utter_submit\"}}]",
+      "handling active loops and forms - form_ordine - action_listen",
+      "[{\"prev_action\": {\"action_name\": \"action_listen\"}, \"user\": {\"intent\": \"start\"}}, {\"prev_action\": {\"action_name\": \"utter_start\"}, \"user\": {\"intent\": \"start\"}}]",
+      "[{\"prev_action\": {\"action_name\": \"action_listen\"}, \"user\": {\"intent\": \"stop\"}}]",
+      "[{\"active_loop\": {\"name\": \"should_not_be_set\"}, \"prev_action\": {\"action_name\": \"form_ordine\"}}, {\"active_loop\": {\"name\": \"should_not_be_set\"}, \"prev_action\": {\"action_name\": \"utter_recap_ordine\"}}]",
+      "[{\"prev_action\": {\"action_name\": \"action_listen\"}, \"user\": {\"intent\": \"inizio_form_ordine\"}}, {\"prev_action\": {\"action_name\": \"utter_inizio_form\"}, \"user\": {\"intent\": \"inizio_form_ordine\"}}]",
+      "predicting default action with intent restart",
+      "handling active loops and forms - form_ordine",
+      "predicting default action with intent session_start"
+    ]
+  }
+}

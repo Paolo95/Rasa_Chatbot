@@ -20,6 +20,7 @@ pattern_intestatario = "^([a-z]+[,.]?[ ]?|[a-z]+['-]?)+$"
 pattern_cvv = "^\d{3}$"
 pattern_scadenza = "^(0[1-9]|1[0-2])\/?([0-9]{2})$"
 pattern_email = "^([a-zA-Z0-9_\-\.]+)@([a-zA-Z0-9_\-\.]+)\.([a-zA-Z]{2,5})$"
+pattern_numero_telefono = "^((00|\+)39[\. ]??)??3\d{2}[\. ]??\d{6,7}$"
 
 class ValidazioneFormOrdine(FormValidationAction):
 
@@ -182,4 +183,19 @@ class ValidazioneFormOrdine(FormValidationAction):
         else:
             dispatcher.utter_message(text=f"L'email non è corretta!")
             return {"email": None}
+    
+    def validate_numero_telefono(
+        self,
+        slot_value: Any,
+        dispatcher: CollectingDispatcher,
+        tracker: Tracker,
+        domain: DomainDict,
+    ) -> Dict[Text, Any]:
+        """Validate 'cvv'."""
+
+        if re.match(pattern_numero_telefono, str(slot_value)) is not None:
+            dispatcher.utter_message(text=f"OK! Il numero inserito è stato accettato!")
+            return {"numero_telefono": slot_value}
+        else:
+            dispatcher.utter_message(text=f"Il numero di telefono inserito non è valido, riprova")
     
