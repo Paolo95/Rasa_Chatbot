@@ -21,6 +21,7 @@ pattern_cvv = "^\d{3}$"
 pattern_scadenza = "^(0[1-9]|1[0-2])\/?([0-9]{2})$"
 pattern_email = "^([a-zA-Z0-9_\-\.]+)@([a-zA-Z0-9_\-\.]+)\.([a-zA-Z]{2,5})$"
 pattern_numero_telefono = "^((00|\+)39[\. ]??)??3\d{2}[\. ]??\d{6,7}$"
+pattern_indirizzo_spedizione = "^\s*\S+(?:\s+\S+){2}"
 
 class ValidazioneFormOrdine(FormValidationAction):
 
@@ -116,6 +117,7 @@ class ValidazioneFormOrdine(FormValidationAction):
             return {"cvv": slot_value}
         else:
             dispatcher.utter_message(text=f"Il cvv inserito è errato, riprova")
+            return {"cvv": None}
 
     def validate_scadenza(
         self,
@@ -191,11 +193,27 @@ class ValidazioneFormOrdine(FormValidationAction):
         tracker: Tracker,
         domain: DomainDict,
     ) -> Dict[Text, Any]:
-        """Validate 'cvv'."""
+        """Validate 'numero_telefono'."""
 
         if re.match(pattern_numero_telefono, str(slot_value)) is not None:
             dispatcher.utter_message(text=f"OK! Il numero inserito è stato accettato!")
             return {"numero_telefono": slot_value}
         else:
             dispatcher.utter_message(text=f"Il numero di telefono inserito non è valido, riprova")
+            return {"numero_telefono": None}
     
+    def validate_indirizzo_spedizione(
+        self,
+        slot_value: Any,
+        dispatcher: CollectingDispatcher,
+        tracker: Tracker,
+        domain: DomainDict,
+    ) -> Dict[Text, Any]:
+        """Validate 'indirizzo_spedizione'."""
+
+        if re.match(pattern_indirizzo_spedizione, str(slot_value)) is not None:
+            dispatcher.utter_message(text=f"L'indirizzo di spedizione è corretto!")
+            return {"indirizzo_spedizione": slot_value}
+        else:
+            dispatcher.utter_message(text=f"L'indirizzo non è valido, riprova")
+            return {"indirizzo_spedizione": None}

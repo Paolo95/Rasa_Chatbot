@@ -69,6 +69,9 @@ responses:
   utter_ask_numero_telefono:
   - text: "Inserisci il tuo numero di cellulare"
 
+  utter_ask_indirizzo_spedizione:
+  - text: "Inserisci l'indirizzo di spedizione"
+
 
 
 entities:
@@ -167,12 +170,12 @@ slots:
     - type: from_entity
       entity: numero_telefono
   
-#  indirizzo_spedizione:
-#    type: text
-#    influence_conversation: true
-#    mappings:
-#    - type: from_entity
-#      entity: circuito  
+  indirizzo_spedizione:
+    type: text
+    influence_conversation: true
+    mappings:
+    - type: from_entity
+      entity: indirizzo_spedizione  
 
 #  conferma:
 #    type: text
@@ -194,6 +197,7 @@ forms:
       - quantita
       - email
       - numero_telefono
+      - indirizzo_spedizione
 
 
 actions:

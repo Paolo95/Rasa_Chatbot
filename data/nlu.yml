@@ -81,6 +81,8 @@ nlu:
     - il mio cellulare è [329 6554126](numero_telefono)
     - numero di cellulare [3354501894](numero_telefono)
     - [339 7619766](numero_telefono)
+    - [Viale piane san donato 33](indirizzo_spedizione) [Venezia](citta)
+    - Il mio indirizzo è [Via Roma 349](indirizzo_spedizione) [Roma](citta)
 
 - lookup: notebook
   examples: |
@@ -98,6 +100,14 @@ nlu:
     - diners club
     - jcb
     - visa mastercard
+
+- lookup: citta
+  examples: |
+    - Venezia
+    - Roma
+    - Padova
+    - Monza
+    - Napoli
 
 - lookup: numero_carta
   examples: |
@@ -138,6 +148,10 @@ nlu:
   examples: |
     - ^(0[1-9]|1[0-2])\/?([0-9]{2})$
 
+- regex: indirizzo_spedizione
+  examples: |
+    - ^\s*\S+(?:\s+\S+){2}
+
 - regex: email
   examples: |
     - ^([a-zA-Z0-9_\-\.]+)@([a-zA-Z0-9_\-\.]+)\.([a-zA-Z]{2,5})$
@@ -152,12 +166,71 @@ nlu:
     - segreteria@univpm.it
     - presidenza@univpm.it
 
+- lookup: indirizzo_spedizione
+  examples: |
+    - Via dei pini 43
+    - Via Firenze 12
+    - Piazza martiri 123
+
 - lookup: scadenza
   examples: |
     - 03/23
     - 01/22
     - 09/23
     - 04/24
+
+- lookup: citta
+  examples: |
+    - Roma
+    - Milano
+    - Napoli
+    - Torino
+    - Palermo
+    - Genova
+    - Bologna
+    - Firenze
+    - Bari
+    - Catania
+    - Venezia
+    - Verona
+    - Messina
+    - Padova
+    - Trieste
+    - Taranto
+    - Brescia
+    - Parma
+    - Prato
+    - Modena
+    - Reggio Calabria
+    - Reggio Emilia
+    - Perugia
+    - Ravenna
+    - Livorno
+    - Cagliari
+    - Foggia
+    - Rimini
+    - Salerno
+    - Ferrara
+    - Sassari
+    - Latina
+    - Giugliano in Campania
+    - Monza
+    - Siracusa
+    - Pescara
+    - Bergamo
+    - Forlì
+    - Trento
+    - Vicenza
+    - Terni
+    - Bolzano
+    - Novara
+    - Piacenza
+    - Ancona
+    - Andria
+    - Arezzo
+    - Udine
+    - Cesena
+    - Lecce
 
 - lookup: nome_prodotto
   examples: |

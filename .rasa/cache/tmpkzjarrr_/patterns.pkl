@@ -1,0 +1,90 @@
+[
+  {
+    "name": "cvv",
+    "pattern": "^\\d{3}$"
+  },
+  {
+    "name": "email",
+    "pattern": "^([a-zA-Z0-9_\\-\\.]+)@([a-zA-Z0-9_\\-\\.]+)\\.([a-zA-Z]{2,5})$"
+  },
+  {
+    "name": "indirizzo_spedizione",
+    "pattern": "^\\s*\\S+(?:\\s+\\S+){2}"
+  },
+  {
+    "name": "numero_carta",
+    "pattern": "^(5[1-5][0-9]{14}|2(22[1-9][0-9]{12}|2[3-9][0-9]{13}|[3-6][0-9]{14}|7[0-1][0-9]{13}|720[0-9]{12}))$"
+  },
+  {
+    "name": "numero_carta",
+    "pattern": "^(62[0-9]{14,17})$"
+  },
+  {
+    "name": "numero_carta",
+    "pattern": "^(?:2131|1800|35\\d{3})\\d{11}$"
+  },
+  {
+    "name": "numero_carta",
+    "pattern": "^(?:4[0-9]{12}(?:[0-9]{3})?|5[1-5][0-9]{14})$"
+  },
+  {
+    "name": "numero_carta",
+    "pattern": "^3(?:0[0-5]|[68][0-9])[0-9]{11}$"
+  },
+  {
+    "name": "numero_carta",
+    "pattern": "^4[0-9]{12}(?:[0-9]{3})?$"
+  },
+  {
+    "name": "numero_telefono",
+    "pattern": "^((00|\\+)39[\\. ]??)??3\\d{2}[\\. ]??\\d{6,7}$"
+  },
+  {
+    "name": "quantita",
+    "pattern": "^\\d{1,2}$"
+  },
+  {
+    "name": "scadenza",
+    "pattern": "^(0[1-9]|1[0-2])\\/?([0-9]{2})$"
+  },
+  {
+    "name": "notebook",
+    "pattern": "(\\blaptop\\b|\\bnetbook\\b|\\bportatile\\b|\\bcomputer\\ portatile\\b)"
+  },
+  {
+    "name": "circuito",
+    "pattern": "(\\bvisa\\b|\\bmastercard\\b|\\bchina\\ union\\ pay\\b|\\bdiners\\b|\\bdiners\\ club\\b|\\bjcb\\b|\\bvisa\\ mastercard\\b)"
+  },
+  {
+    "name": "citta",
+    "pattern": "(\\bVenezia\\b|\\bRoma\\b|\\bPadova\\b|\\bMonza\\b|\\bNapoli\\b|\\bRoma\\b|\\bMilano\\b|\\bNapoli\\b|\\bTorino\\b|\\bPalermo\\b|\\bGenova\\b|\\bBologna\\b|\\bFirenze\\b|\\bBari\\b|\\bCatania\\b|\\bVenezia\\b|\\bVerona\\b|\\bMessina\\b|\\bPadova\\b|\\bTrieste\\b|\\bTaranto\\b|\\bBrescia\\b|\\bParma\\b|\\bPrato\\b|\\bModena\\b|\\bReggio\\ Calabria\\b|\\bReggio\\ Emilia\\b|\\bPerugia\\b|\\bRavenna\\b|\\bLivorno\\b|\\bCagliari\\b|\\bFoggia\\b|\\bRimini\\b|\\bSalerno\\b|\\bFerrara\\b|\\bSassari\\b|\\bLatina\\b|\\bGiugliano\\ in\\ Campania\\b|\\bMonza\\b|\\bSiracusa\\b|\\bPescara\\b|\\bBergamo\\b|\\bForlì\\b|\\bTrento\\b|\\bVicenza\\b|\\bTerni\\b|\\bBolzano\\b|\\bNovara\\b|\\bPiacenza\\b|\\bAncona\\b|\\bAndria\\b|\\bArezzo\\b|\\bUdine\\b|\\bCesena\\b|\\bLecce\\b)"
+  },
+  {
+    "name": "numero_carta",
+    "pattern": "(\\b3242\\ 9900\\ 6543\\ 5321\\b|\\b2998\\ 3234\\ 2342\\ 5234\\b|\\b4535\\ 4323\\ 7652\\ 5463\\b|\\b3194\\ 2435\\ 3452\\ 4564\\b|\\b4562\\ 2456\\ 2456\\ 2245\\b)"
+  },
+  {
+    "name": "intestatario_carta",
+    "pattern": "(\\bSimone\\ Onori\\b|\\bJohn\\ J\\.\\ Smith\\b|\\bR\\.\\ J\\.\\ Tannen\\b|\\bBeef\\ Tannen\\b|\\bMarty\\ McFly\\b|\\bSimone\\ Francalancia\\b|\\bNicola\\ Silveri\\b)"
+  },
+  {
+    "name": "email",
+    "pattern": "(\\bcompagnonipaolo95@gmail\\.com\\b|\\bsegreteria@univpm\\.it\\b|\\bpresidenza@univpm\\.it\\b)"
+  },
+  {
+    "name": "indirizzo_spedizione",
+    "pattern": "(\\bVia\\ dei\\ pini\\ 43\\b|\\bVia\\ Firenze\\ 12\\b|\\bPiazza\\ martiri\\ 123\\b)"
+  },
+  {
+    "name": "scadenza",
+    "pattern": "(\\b03/23\\b|\\b01/22\\b|\\b09/23\\b|\\b04/24\\b)"
+  },
+  {
+    "name": "nome_prodotto",
+    "pattern": "(\\bnotebook\\ Lenovo\\ i5\\ decima\\ generazione\\ 8\\ gb\\ RAM\\ 500gb\\ SSD\\b|\\bmacbook\\ pro\\ 16\\ M1\\b|\\bnotebook\\ ASUS\\ i7\\ undicesima\\ generazione\\ 16\\ gb\\ RAM\\ 1tb\\ SSD\\b)"
+  },
+  {
+    "name": "quantita",
+    "pattern": "(\\b1\\b|\\b2\\b|\\b3\\b|\\b4\\b|\\b5\\b|\\b6\\b|\\b7\\b|\\b8\\b|\\b9\\b|\\b10\\b)"
+  }
+]
