@@ -54,14 +54,24 @@ responses:
   utter_ask_cvv:
   - text: "Inserisci il cvv della tua carta"
 
+  utter_ask_scadenza:
+  - text: "Inserisci la data di scadenza della carta"
+
+  utter_ask_nome_prodotto:
+  - text: "Inserisci il prodotto che vuoi acquistare"
+
+  utter_ask_quantita:
+  - text: "Quanti ne vuoi acquistare?"
+
+  utter_ask_email:
+  - text: "Inserisci la tua e-mail"
+
 
 entities:
 - circuito
 - metodo_pagamento
 - numero_carta
 - intestatario_carta
-- nome
-- cognome
 - scadenza
 - cvv
 
@@ -110,26 +120,12 @@ slots:
     - type: from_entity
       entity: intestatario_carta    
 
-#  nome:
-#    type: text
-#    influence_conversation: true
-#    mappings:
-#    - type: from_entity
-#      entity: circuito    
-
-#  cognome:
-#    type: text
-#    influence_conversation: true
-#    mappings:
-#    - type: from_entity
-#      entity: circuito    
-  
-#  scadenza:
-#    type: text
-#    influence_conversation: true
-#    mappings:
-#    - type: from_entity
-#      entity: circuito    
+  scadenza:
+    type: text
+    influence_conversation: true
+    mappings:
+    - type: from_entity
+      entity: scadenza    
   
   cvv:
     type: text
@@ -139,26 +135,26 @@ slots:
       entity: cvv
 
   
-#  nome_prodotto:
-#    type: text
-#    influence_conversation: true
-#    mappings:
-#    - type: from_entity
-#      entity: circuito    
+  nome_prodotto:
+    type: text
+    influence_conversation: true
+    mappings:
+    - type: from_entity
+      entity: nome_prodotto    
   
-#  quantita:
-#    type: text
-#    influence_conversation: true
-#    mappings:
-#    - type: from_entity
-#      entity: circuito    
+  quantita:
+    type: text
+    influence_conversation: true
+    mappings:
+    - type: from_entity
+      entity: quantita    
   
-#  email:
-#    type: text
-#    influence_conversation: true
-#    mappings:
-#    - type: from_entity
-#      entity: circuito
+  email:
+    type: text
+    influence_conversation: true
+    mappings:
+    - type: from_entity
+      entity: email
 
 #  numero_telefono:
 #    type: text
@@ -188,7 +184,11 @@ forms:
       - circuito      
       - numero_carta
       - intestatario_carta
+      - scadenza
       - cvv
+      - nome_prodotto
+      - quantita
+      - email
 
 
 actions:

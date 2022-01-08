@@ -5,9 +5,11 @@ from rasa_sdk import Action, Tracker, FormValidationAction
 from rasa_sdk.executor import CollectingDispatcher
 from rasa_sdk.events import EventType
 from rasa_sdk.types import DomainDict
+from datetime import date, datetime
 
 VALORI_CONSENTITI_CIRCUITO = ["visa", "mastercard", "diners", "american express", "china union pay"]
 VALORI_CONSENTITI_PC = ["notebook", "pc"]
+NOTEBOOK_DISPONIBILI = ["macbook pro 16 m1"]
 pattern_visa = "^4[0-9]{12}(?:[0-9]{3})?$"
 pattern_visa_mastercard = "^(?:4[0-9]{12}(?:[0-9]{3})?|5[1-5][0-9]{14})$"
 pattern_diners = "^3(?:0[0-5]|[68][0-9])[0-9]{11}$"
@@ -16,7 +18,8 @@ pattern_jcb = "^(?:2131|1800|35\d{3})\d{11}$"
 pattern_union = "^(62[0-9]{14,17})$"
 pattern_intestatario = "^([a-z]+[,.]?[ ]?|[a-z]+['-]?)+$"
 pattern_cvv = "^\d{3}$"
-
+pattern_scadenza = "^(0[1-9]|1[0-2])\/?([0-9]{2})$"
+pattern_email = "^([a-zA-Z0-9_\-\.]+)@([a-zA-Z0-9_\-\.]+)\.([a-zA-Z]{2,5})$"
 
 class ValidazioneFormOrdine(FormValidationAction):
 
@@ -112,3 +115,71 @@ class ValidazioneFormOrdine(FormValidationAction):
             return {"cvv": slot_value}
         else:
             dispatcher.utter_message(text=f"Il cvv inserito è errato, riprova")
+
+    def validate_scadenza(
+        self,
+        slot_value: Any,
+        dispatcher: CollectingDispatcher,
+        tracker: Tracker,
+        domain: DomainDict,
+    ) -> Dict[Text, Any]:
+        """Validate 'scadenza'."""
+
+        past = datetime.strptime(slot_value, "%m/%y")
+        present_string = datetime.today().strftime('%m/%y')
+        present_datetime = datetime.strptime(present_string, '%m/%y')
+        
+        if (re.match(pattern_scadenza, str(slot_value)) is not None and (past.date() > present_datetime.date())):
+            dispatcher.utter_message(text=f"La data di scadenza è corretta!")
+            return {"scadenza": slot_value}
+        else:
+            dispatcher.utter_message(text=f"La data di scadenza è errata, riprova")
+            return {"scadenza": None}
+    
+    def validate_nome_prodotto(
+        self,
+        slot_value: Any,
+        dispatcher: CollectingDispatcher,
+        tracker: Tracker,
+        domain: DomainDict,
+    ) -> Dict[Text, Any]:
+        """Validate 'nome_prodotto'."""
+
+        if slot_value.lower() not in NOTEBOOK_DISPONIBILI:
+            dispatcher.utter_message(text=f"Al momento il prodotto non è disponibile")
+            return {"nome_prodotto":None}
+        dispatcher.utter_message(text=f"Il prodotto è disponibile!")
+        return {"nome_prodotto": slot_value}
+    
+    def validate_quantita(
+        self,
+        slot_value: Any,
+        dispatcher: CollectingDispatcher,
+        tracker: Tracker,
+        domain: DomainDict,
+    ) -> Dict[Text, Any]:
+        """Validate 'quantita'."""
+
+        slot_value_num = int(slot_value)
+        if slot_value_num > 0 and slot_value_num < 11:
+            dispatcher.utter_message(text=f"OK!")
+            return {"quantita": slot_value}
+        dispatcher.utter_message(text=f"Quantità non valida")
+        return {"quantita": None}
+
+    def validate_email(
+        self,
+        slot_value: Any,
+        dispatcher: CollectingDispatcher,
+        tracker: Tracker,
+        domain: DomainDict,
+    ) -> Dict[Text, Any]:
+        """Validate 'email'."""
+
+        if (re.match(pattern_email, str(slot_value)) is not None):
+            dispatcher.utter_message(text=f"OK!")
+            return {"email": slot_value}
+        else:
+            dispatcher.utter_message(text=f"L'email non è corretta!")
+            return {"email": None}
+    
