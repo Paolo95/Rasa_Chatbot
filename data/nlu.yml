@@ -7,6 +7,8 @@ nlu:
 - intent: stop
   examples: |
     - stop
+    - chiudi form
+    - chiudi
     - quit
 - intent: saluti
   examples: |
@@ -83,6 +85,11 @@ nlu:
     - [339 7619766](numero_telefono)
     - [Viale piane san donato 33](indirizzo_spedizione) [Venezia](citta)
     - Il mio indirizzo è [Via Roma 349](indirizzo_spedizione) [Roma](citta)
+    - Vorrei ordinare un [notebook](tipologia_prodotto)
+    - avrei bisogno di un [notebook](tipologia_prodotto)
+    - è mica disponibile un [notebook](tipologia_prodotto)?
+    - quali tipi di [notebook](tipologia_prodotto) avete?
+    - quali [notebook](tipologia_prodotto) sono disponibili?
 
 - lookup: notebook
   examples: |
@@ -101,14 +108,6 @@ nlu:
     - jcb
     - visa mastercard
 
-- lookup: citta
-  examples: |
-    - Venezia
-    - Roma
-    - Padova
-    - Monza
-    - Napoli
-
 - lookup: numero_carta
   examples: |
     - 3242 9900 6543 5321
@@ -116,6 +115,72 @@ nlu:
     - 4535 4323 7652 5463
     - 3194 2435 3452 4564
     - 4562 2456 2456 2245
+    - 4188 1909 2724 4579
+    - 4253 2396 0336 1940
+    - 4160 8524 5088 9383
+    - 4911 1420 2275 7751
+    - 4607 4397 1406 9050
+    - 4086 4660 8048 5719
+    - 4660 4228 2160 9251
+    - 4046 5701 4726 8247
+    - 4752 1070 6446 7488
+    - 4532 9915 7779 9033
+
+    - 5349 1545 5330 9679
+    - 5521 5866 3640 5026
+    - 5246 4932 5003 7900
+    - 5368 0454 0509 5134
+    - 5187 0470 5264 1243
+    - 5445 2438 0689 0024
+    - 5416 9645 5280 0843
+    - 5511 6693 6055 2544
+    - 5477 6558 3513 9076
+    - 5283 1116 5382 4096
+
+    - 3488 3484 5610 453
+    - 3446 9610 6143 142
+    - 3782 4142 3658 081
+    - 3498 7139 1735 143
+    - 3492 0793 1254 479
+    - 3474 2560 1221 923
+    - 3498 8035 8874 316
+    - 3740 2399 7452 701
+    - 3440 1120 6720 916
+    - 3472 4998 0844 349
+
+    - 3539 5443 0786 1584
+    - 3569 2419 1447 5774
+    - 3588 3544 5118 2120
+    - 3558 3916 2275 2916
+    - 3548 2609 5186 4829
+    - 3589 2968 8398 2255
+    - 3558 4301 4262 4484
+    - 3579 2993 6685 7574
+    - 3588 6087 1562 4353
+    - 3589 0342 9885 6164
+
+    - 38461863448890
+    - 36421515628010
+    - 5881728593995300
+    - 36453550611031
+    - 38551579506245
+    - 36041573123454
+    - 36842591756492
+    - 5269458094098527
+    - 38226868405330
+    - 5116112398004252
+
+    - 6238333905976945
+    - 6257653646724712913
+    - 6208783411128241
+    - 624923064412331247
+    - 6235236312219150
+    - 620551739995825735
+    - 6264503731698635
+    - 6200626955624756203
+    - 62620175944686772
+    - 62620175944686772
+    - 6236502818252663
 
 - lookup: intestatario_carta
   examples: |
@@ -235,12 +300,112 @@ nlu:
     - compagnonipaolo95@gmail.com
     - segreteria@univpm.it
     - presidenza@univpm.it
+    - maltenwerth@hotmail.com
+    - scorwin@jacobson.info
+    - tkulas@yahoo.com
+    - urban19@stokes.org
+    - kailee10@gmail.com
+    - amurphy@hotmail.com
+    - bauch.rylee@yahoo.com
+    - elva57@dickinson.org
+    - ari79@schuppe.com
+    - pearlie00@hotmail.com
+    - garfield58@anderson.com
+    - agreenholt@greenfelder.com
+    - vhowe@rohan.com
+    - geraldine65@howe.com
+    - hodkiewicz.florine@hotmail.com
+    - keith.beer@yahoo.com
+    - jerel.ebert@stracke.biz
+    - roman.cartwright@blick.com
+    - kolby74@gmail.com
+    - goodwin.kaitlyn@yahoo.com
+    - huels.alejandrin@dare.org
+    - al.block@gmail.com
+    - stevie79@hotmail.com
+    - monserrate.hintz@yahoo.com
+    - alysa99@gmail.com
+    - scottie34@hotmail.com
+    - rsatterfield@lind.com
+    - hintz.mellie@erdman.com
+    - sid51@skiles.biz
+    - walter.florence@gmail.com
+    - albert44@larson.net
+    - leuschke.leora@gmail.com
+    - lester62@keeling.com
+    - ruecker.pamela@hotmail.com
+    - yesenia.wyman@donnelly.com
+    - vblanda@hotmail.com
+    - orin82@gmail.com
+    - beatty.peter@eichmann.info
+    - name.buckridge@hotmail.com
+    - eve22@yahoo.com
+    - lakin.trisha@eichmann.com
+    - alisha.frami@moen.com
+    - rreichel@hotmail.com
+    - tara13@crooks.com
+    - boyer.brionna@gmail.com
+    - devin53@lubowitz.com
+    - brock.turner@hotmail.com
+    - nikolaus.furman@langosh.org
+    - preston50@gmail.com
+    - dkris@douglas.info
 
 - lookup: indirizzo_spedizione
   examples: |
     - Via dei pini 43
     - Via Firenze 12
     - Piazza martiri 123
+    - Contrada Egisto 01
+    - Rotonda Ricci 34
+    - Via Erminia 0 Piano 8
+    - Contrada lucente 4
+    - Piazza Quasimodo 1
+    - Incrocio Lisa 464
+    - Via Ruth 710
+    - Contrada Bortolo 449
+    - Strada Furio 589
+    - Via Arcibaldo 096
+    - Borgo Mariani 170
+    - Rotonda Lino 0
+    - Borgo Celeste 901
+    - Piazza Helga 318
+    - Contrada Carmela 0
+    - Contrada Erminia 26
+    - Borgo Palmieri 761
+    - Piazza Martini 164
+    - Via Matilde 5
+    - Borgo Loretta 6
+    - Rotonda Vitalba 7
+    - Incrocio Davide 23
+    - Rotonda Maika 808
+    - Piazza Marino 540
+    - Incrocio Farina 575
+    - Contrada Esposito 04
+    - Borgo Costa 39
+    - Incrocio Assia 54
+    - Via Barbieri 78
+    - Contrada Gastone 29
+    - Borgo Battaglia 2
+    - Incrocio Naomi 27
+    - Incrocio Damico 6
+    - Incrocio Harry 9
+    - Borgo Rossi 7
+    - Strada Cleopatra 279
+    - Via Santoro 2
+    - Rotonda Neri 49
+    - Strada Irene 831
+    - Via Gentile 31
+    - Borgo De luca 83
+    - Piazza Barbieri 9
+    - Via Fernando 270
+    - Contrada Pagano 61
+    - Piazza Akira 60
+    - Contrada Palumbo 4
+    - Strada Neri 2
+    - Strada Giuliani 8
+    - Via Gavino 36
+    - Contrada Violante 8
 
 - lookup: scadenza
   examples: |
@@ -248,6 +413,11 @@ nlu:
     - 01/22
     - 09/23
     - 04/24
+    - 10/23
+    - 12/25
+    - 11/24
+    - 02/25
+
 
 - lookup: citta
   examples: |

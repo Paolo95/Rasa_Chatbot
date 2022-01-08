@@ -7,11 +7,6 @@ rules:
   - intent: start
   - action: utter_start
 
-- rule: messaggio_chiusura
-  steps:
-  - intent: stop
-  - action: utter_stop
-
 - rule: attiva_form_ordine
   steps:
   - intent: inizio_form_ordine
@@ -29,3 +24,13 @@ rules:
     - requested_slot: null
   - action: utter_recap_ordine
   - action: utter_submit
+
+- rule: Interruption_form_ordine
+  condition:
+  - active_loop: form_ordine
+  steps:
+  - intent: intent_felice
+  - action: utter_felice
+  - action: form_ordine
+  - active_loop: form_ordine
+

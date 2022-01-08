@@ -24,6 +24,9 @@ responses:
   utter_stop:
   - text: "Arrivederci e grazie per averci contattato!"
 
+  utter_continua_form:
+  - text: "Vuoi uscire dal form?"
+
   utter_felice:
   - text: "Alla grande! Mi sento pronto per darti una mano!"
 
@@ -72,6 +75,9 @@ responses:
   utter_ask_indirizzo_spedizione:
   - text: "Inserisci l'indirizzo di spedizione"
 
+  utter_ask_citta:
+  - text: "Inserisci la città"
+
 
 
 entities:
@@ -89,6 +95,7 @@ entities:
 - email
 - numero_telefono
 - indirizzo_spedizione
+- citta
 - conferma
 
 slots:
@@ -105,14 +112,7 @@ slots:
     mappings:
     - type: from_entity
       entity: tipologia_prodotto   
-  
-#  metodo_pagamento:
-#    type: text
-#    influence_conversation: true
-#    mappings:
-#    - type: from_entity
-#      entity: metodo_pagamento
-  
+
   numero_carta:
     type: text
     influence_conversation: true
@@ -176,13 +176,13 @@ slots:
     mappings:
     - type: from_entity
       entity: indirizzo_spedizione  
-
-#  conferma:
-#    type: text
-#    influence_conversation: true
-#    mappings:
-#    - type: from_entity
-#      entity: circuito
+  
+  citta:
+    type: text
+    influence_conversation: true
+    mappings:
+    - type: from_entity
+      entity: citta  
 
 forms:
   form_ordine:
@@ -198,6 +198,7 @@ forms:
       - email
       - numero_telefono
       - indirizzo_spedizione
+      - citta
 
 
 actions:
