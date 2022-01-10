@@ -11,8 +11,8 @@ from rasa_sdk.events import AllSlotsReset
 from rasa_sdk.types import DomainDict
 from datetime import date, datetime
 
-VALORI_CONSENTITI_CIRCUITO = ["visa", "mastercard", "diners", "american express", "china union pay"]
-NOTEBOOK_DISPONIBILI = ["macbook pro 16 m1"]
+VALORI_CONSENTITI_CIRCUITO = ["visa", "mastercard", "diners", "american express", "china union pay", "jcb"]
+NOTEBOOK_DISPONIBILI = ["macbook pro 16 m1", "acer-a114-33-c28d"]
 pattern_visa = "^4[0-9]{12}(?:[0-9]{3})?$"
 pattern_visa_mastercard = "^(?:4[0-9]{12}(?:[0-9]{3})?|5[1-5][0-9]{14})$"
 pattern_diners = "^3(?:0[0-5]|[68][0-9])[0-9]{11}$"
@@ -137,6 +137,7 @@ class ValidazioneFormOrdine(FormValidationAction):
     ) -> Dict[Text, Any]:
         """Validate 'nome_prodotto'."""
 
+        print(slot_value.lower())
         if slot_value.lower() not in NOTEBOOK_DISPONIBILI:
             dispatcher.utter_message(text=f"Al momento il prodotto non è disponibile")
             return {"nome_prodotto":None}
@@ -261,7 +262,7 @@ class ValidazioneFormOrdine(FormValidationAction):
                                       "Indirizzo spedizione: "+str(indirizzo_spedizione)+" "+str(citta)+"\n"+
                                       "CAP: "+str(cap))
             return {"conferma_recap": slot_value}
-        if tracker.get_slot("conferma") == "no_recap":
+        if tracker.get_slot("conferma_recap") == "no_recap":
             return {"conferma_recap": slot_value}
 
     def validate_conferma_ordine(
@@ -308,7 +309,7 @@ class ValidazioneFormOrdine(FormValidationAction):
             }
 
             #salva la ricevuta a db e ritorna l'id del documento appena creato
-            id_ricevuta = ordini.insert_one(ricevuta).inserted_id
+            ordini.insert_one(ricevuta)
   
             dispatcher.utter_message(text=f"L'ordine è stato inoltrato")
             return {"conferma_ordine": slot_value}

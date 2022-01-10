@@ -2,8 +2,10 @@ version: "3.0"
 
 intents:
   - saluti
+  - conferma_recap
+  - conferma_ordine
   - conferma
-  - negazione
+  - negazione    
   - start
   - stop
   - intent_felice
@@ -16,17 +18,23 @@ responses:
   - text: "Ciao! Come posso esserti utile?"
 
   utter_start:
-  - text: "Benvenuto nell'assistenza clienti di DS Informatica! \n
-           Tocca i bottoni qui sotto o richiedi i seguenti servizi: \n
-           --> Ordine da remoto di notebook o PC \n
-           --> Reso e rimborsi"
+  - text: "Benvenuto! Sono il chatbot di DS Informatica! \n
+           Tocca il bottone qui sotto o chiedimi qualsiasi cosa!"
+    buttons:
+    - title: "Nuovo ordine"
+      payload: "ordina"
   
   utter_stop:
   - text: "Arrivederci e grazie per averci contattato!"
 
-  utter_continua_form:
+  utter_ask_continua_form:
   - text: "Vuoi uscire dal form?"
-
+    buttons:
+    - title: "Si"
+      payload: "si"
+    - title: "No"
+      payload: "no"
+   
   utter_felice:
   - text: "Alla grande! Mi sento pronto per darti una mano!"
 
@@ -38,6 +46,9 @@ responses:
  
   utter_submit:
   - text: "L'ordine è stato inoltrato!"
+
+  utter_uscita_form:
+  - text: "Sei uscito dalla sezione ordine!"
 
   utter_ask_circuito:
   - text: "Che circuito ha la tua carta?"
@@ -75,10 +86,12 @@ responses:
   utter_ask_nome_prodotto:
   - text: "Inserisci il prodotto che vuoi acquistare"
     buttons:
-    - title: "Macbook Pro 16 M1"
+    - title: "Apple MacBook Air 13 \", 256 GB SSD, 8GB RAM"
       payload: "Macbook Pro 16 M1"
-    - title: "Lenovo"
-      payload: "Lenovo"
+    - title: "ASUS F515JA-BR1892T 15,6 \" Intel Core i3"
+      payload: "ASUS F515JA-BR1892T"
+    - title: "ACER-A114-33-C28D"
+      payload: "ACER-A114-33-C28D"
 
   utter_ask_quantita:
   - text: "Quanti ne vuoi acquistare?"
@@ -131,6 +144,8 @@ entities:
 - cap
 - conferma_recap
 - conferma_ordine
+- conferma
+- negazione
 
 slots:
   circuito:

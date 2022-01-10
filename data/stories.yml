@@ -15,10 +15,9 @@ stories:
   - action: form_ordine
   - active_loop: form_ordine
   - intent: stop
-  - action: utter_continua_form
+  - action: utter_ask_continua_form
   - or:
-    - intent: negazione
+    - intent: stop
     - intent: conferma
-  - action: action_deactivate_loop
+  - action: action_deactivate_loop  
   - active_loop: null
-  - action: action_reset
