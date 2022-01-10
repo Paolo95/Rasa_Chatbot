@@ -1,6 +1,6 @@
 recipe: default.v1
 
-language: en
+language: it
 
 pipeline:
    - name: WhitespaceTokenizer

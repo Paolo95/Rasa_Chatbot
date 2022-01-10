@@ -21,27 +21,41 @@ nlu:
     - buon pomeriggio
     - buona serata
     - eilà
-- intent: conferma
+- intent: conferma_recap
   examples: |
-    - si
-    - s
-    - yes
-    - certo
-    - ovvio
-    - confermo
-    - va bene
-    - ottimo
-- intent: negazione
+    - si_recap
+    - s_recap
+    - yes_recap
+    - certo_recap
+    - ovvio_recap
+    - confermo_recap
+    - va bene_recap
+    - ottimo_recap
+    - no_recap
+    - n_recap
+    - nego_recap
+    - annullo_recap
+    - annulla_recap
+    - rifiuta_recap
+    - rifiuto_recap
+- intent: conferma_ordine
   examples: |
-    - no
-    - n
-    - assolutamente no
-    - nego
-    - annullo
-    - annulla
-    - non va bene
-    - rifiuta
-    - rifiuto
+    - si_ordine
+    - s_ordine
+    - yes_ordine
+    - certo_ordine
+    - ovvio_ordine
+    - confermo_ordine
+    - va bene_ordine
+    - ottimo_ordine
+    - no_ordine
+    - n_ordine
+    - nego_ordine
+    - annullo_ordine
+    - annulla_ordine
+    - rifiuta_ordine
+    - rifiuto_ordine
+
 - intent: intent_felice
   examples: |
     - come stai?
@@ -55,9 +69,7 @@ nlu:
     - acquista
 - intent: informazioni_ordine
   examples: |
-    - Vorrei ordinare un [notebook](tipologia_prodotto)
-    - [notebook](tipologia_prodotto)
-    - Voglio ordinare un [notebook](tipologia_prodotto) con carta [mastercard](circuito)
+    - Il circuito è [visa](circuito)
     - [visa](circuito)
     - il numero della carta è [3542 2356 6543 5643](numero_carta)
     - [3242 9900 6543 5321](numero_carta)
@@ -84,12 +96,24 @@ nlu:
     - numero di cellulare [3354501894](numero_telefono)
     - [339 7619766](numero_telefono)
     - [Viale piane san donato 33](indirizzo_spedizione) [Venezia](citta)
-    - Il mio indirizzo è [Via Roma 349](indirizzo_spedizione) [Roma](citta)
+    - Il mio indirizzo è [Via Roma 349](indirizzo_spedizione) [Napoli](citta)
     - Vorrei ordinare un [notebook](tipologia_prodotto)
     - avrei bisogno di un [notebook](tipologia_prodotto)
     - è mica disponibile un [notebook](tipologia_prodotto)?
     - quali tipi di [notebook](tipologia_prodotto) avete?
     - quali [notebook](tipologia_prodotto) sono disponibili?
+    - la mia citta è [Firenze](citta)
+    - [Roma](citta)
+    - [64013](cap)
+    - Il CAP è [23045](cap)
+    - [si_recap](conferma_recap)
+    - [conferma_recap](conferma_recap)
+    - [no_recap](conferma_recap)
+    - [annullo_recap](conferma_recap)
+    - [si_ordine](conferma_ordine)
+    - [conferma_ordine](conferma_ordine)
+    - [no_ordine](conferma_ordine)
+    - [annullo_ordine](conferma_ordine)
 
 - lookup: notebook
   examples: |
@@ -181,6 +205,12 @@ nlu:
     - 62620175944686772
     - 62620175944686772
     - 6236502818252663
+
+- lookup: cap
+  examples: |
+    - 64013
+    - 32456
+    - 43356
 
 - lookup: intestatario_carta
   examples: |
@@ -294,6 +324,10 @@ nlu:
 - regex: numero_telefono
   examples: |
     - ^((00|\+)39[\. ]??)??3\d{2}[\. ]??\d{6,7}$
+
+- regex: cap
+  examples: |
+    - ^\d{5}$
 
 - lookup: email
   examples: |

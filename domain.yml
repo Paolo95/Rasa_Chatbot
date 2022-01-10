@@ -39,11 +39,23 @@ responses:
   utter_submit:
   - text: "L'ordine è stato inoltrato!"
 
-  utter_ask_tipologia_prodotto:
-  - text: "Che tipologia di prodotto desideri?"
-
   utter_ask_circuito:
   - text: "Che circuito ha la tua carta?"
+    buttons:
+    - title: "VISA"
+      payload: "visa"
+    - title: "MASTERCARD"
+      payload: "mastercard"
+    - title: "VISA MASTERCARD"
+      payload: "visa mastercard"
+    - title: "JCB"
+      payload: "jcb"
+    - title: "CHINA UNION PAY"
+      payload: "china union pay"
+    - title: "DINERS"
+      payload: "diners"
+    - title: "AMERICAN EXPRESS"
+      payload: "american express"
 
   utter_ask_numero_carta:
   - text: "Inserisci il numero della carta"
@@ -62,6 +74,11 @@ responses:
 
   utter_ask_nome_prodotto:
   - text: "Inserisci il prodotto che vuoi acquistare"
+    buttons:
+    - title: "Macbook Pro 16 M1"
+      payload: "Macbook Pro 16 M1"
+    - title: "Lenovo"
+      payload: "Lenovo"
 
   utter_ask_quantita:
   - text: "Quanti ne vuoi acquistare?"
@@ -78,6 +95,24 @@ responses:
   utter_ask_citta:
   - text: "Inserisci la città"
 
+  utter_ask_cap:
+  - text: "Inserisci il CAP"
+    
+  utter_ask_conferma_recap:
+  - text: "Vuoi un recap dell'ordine?"
+    buttons:
+    - title: "Si"
+      payload: "si_recap"
+    - title: "No"
+      payload: "no_recap"
+
+  utter_ask_conferma_ordine:
+  - text: "Vuoi confermare l'ordine?"
+    buttons:
+    - title: "Si"
+      payload: "si_ordine"
+    - title: "No"
+      payload: "no_ordine"
 
 
 entities:
@@ -87,16 +122,15 @@ entities:
 - intestatario_carta
 - scadenza
 - cvv
-
-- tipologia_prodotto
 - nome_prodotto
-- quantita
-  
+- quantita  
 - email
 - numero_telefono
 - indirizzo_spedizione
 - citta
-- conferma
+- cap
+- conferma_recap
+- conferma_ordine
 
 slots:
   circuito:
@@ -106,13 +140,6 @@ slots:
     - type: from_entity
       entity: circuito
   
-  tipologia_prodotto:
-    type: text
-    influence_conversation: true
-    mappings:
-    - type: from_entity
-      entity: tipologia_prodotto   
-
   numero_carta:
     type: text
     influence_conversation: true
@@ -182,27 +209,51 @@ slots:
     influence_conversation: true
     mappings:
     - type: from_entity
-      entity: citta  
+      entity: citta
+
+  cap:
+    type: text
+    influence_conversation: true
+    mappings:
+    - type: from_entity
+      entity: cap
+
+  conferma_recap:
+    type: text
+    influence_conversation: true
+    mappings:
+    - type: from_entity
+      entity: conferma_recap
+
+  conferma_ordine:
+    type: text
+    influence_conversation: true
+    mappings:
+    - type: from_entity
+      entity: conferma_ordine          
 
 forms:
   form_ordine:
     required_slots:
-      - tipologia_prodotto
+      - nome_prodotto
       - circuito      
       - numero_carta
       - intestatario_carta
       - scadenza
       - cvv
-      - nome_prodotto
       - quantita
       - email
       - numero_telefono
       - indirizzo_spedizione
       - citta
+      - cap
+      - conferma_recap
+      - conferma_ordine
 
 
 actions:
 - validate_form_ordine
+- action_reset
 
 session_config:
   session_expiration_time: 60

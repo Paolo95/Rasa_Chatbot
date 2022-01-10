@@ -1,14 +1,17 @@
 from typing import Any, Text, Dict, List
 import re
 
+import pymongo as pymongo
+from pymongo import MongoClient
+
 from rasa_sdk import Action, Tracker, FormValidationAction
 from rasa_sdk.executor import CollectingDispatcher
 from rasa_sdk.events import EventType
+from rasa_sdk.events import AllSlotsReset
 from rasa_sdk.types import DomainDict
 from datetime import date, datetime
 
 VALORI_CONSENTITI_CIRCUITO = ["visa", "mastercard", "diners", "american express", "china union pay"]
-VALORI_CONSENTITI_PC = ["notebook", "pc"]
 NOTEBOOK_DISPONIBILI = ["macbook pro 16 m1"]
 pattern_visa = "^4[0-9]{12}(?:[0-9]{3})?$"
 pattern_visa_mastercard = "^(?:4[0-9]{12}(?:[0-9]{3})?|5[1-5][0-9]{14})$"
@@ -22,6 +25,7 @@ pattern_scadenza = "^(0[1-9]|1[0-2])\/?([0-9]{2})$"
 pattern_email = "^([a-zA-Z0-9_\-\.]+)@([a-zA-Z0-9_\-\.]+)\.([a-zA-Z]{2,5})$"
 pattern_numero_telefono = "^((00|\+)39[\. ]??)??3\d{2}[\. ]??\d{6,7}$"
 pattern_indirizzo_spedizione = "^\s*\S+(?:\s+\S+){2}"
+pattern_cap = "^\d{5}$"
 
 class ValidazioneFormOrdine(FormValidationAction):
 
@@ -43,23 +47,8 @@ class ValidazioneFormOrdine(FormValidationAction):
         dispatcher.utter_message(text=f"OK! Il circuito della tua carta di credito è stato accettato!")
         return {"circuito": slot_value}
 
-    
-    def validate_tipologia_prodotto(
-        self,
-        slot_value: Any,
-        dispatcher: CollectingDispatcher,
-        tracker: Tracker,
-        domain: DomainDict,
-    ) -> Dict[Text, Any]:
-        """Validate 'tipologia_prodotto'."""
-
-        if slot_value.lower() not in VALORI_CONSENTITI_PC:
-            dispatcher.utter_message(text=f"Si accettano solo ordini relativi a PC e notebook!")
-            return {"tipologia_prodotto":None}
-        dispatcher.utter_message(text=f"OK!")
-        return {"tipologia_prodotto": slot_value}
-
         
+    
     def validate_numero_carta(
         self,
         slot_value: Any,
@@ -217,3 +206,124 @@ class ValidazioneFormOrdine(FormValidationAction):
         else:
             dispatcher.utter_message(text=f"L'indirizzo non è valido, riprova")
             return {"indirizzo_spedizione": None}
+    
+    def validate_cap(
+        self,
+        slot_value: Any,
+        dispatcher: CollectingDispatcher,
+        tracker: Tracker,
+        domain: DomainDict,
+    ) -> Dict[Text, Any]:
+        """Validate 'cap'."""
+
+        if re.match(pattern_cap, str(slot_value)) is not None:
+            dispatcher.utter_message(text=f"Il CAP è corretto!")
+            return {"cap": slot_value}
+        else:
+            dispatcher.utter_message(text=f"Il CAP non è valido, riprova")
+            return {"cap": None}
+ 
+
+
+    def validate_conferma_recap(
+        self,
+        slot_value: Any,
+        dispatcher: CollectingDispatcher,
+        tracker: Tracker,
+        domain: DomainDict,
+    ) -> Dict[Text, Any]:
+        """Validate 'conferma_recap'."""
+
+        if tracker.get_slot("conferma_recap") == "si_recap":
+            circuito = tracker.get_slot("circuito")
+            numero_carta = tracker.get_slot("numero_carta")
+            intestatario_carta = tracker.get_slot("intestatario_carta")
+            scadenza = tracker.get_slot("scadenza")
+            cvv = tracker.get_slot("cvv")
+            nome_prodotto = tracker.get_slot("nome_prodotto")
+            quantita = tracker.get_slot("quantita")
+            email = tracker.get_slot("email")
+            numero_telefono = tracker.get_slot("numero_telefono")
+            indirizzo_spedizione = tracker.get_slot("indirizzo_spedizione")
+            citta = tracker.get_slot("citta")
+            cap = tracker.get_slot("cap")
+
+            dispatcher.utter_message(text="Riepilogo ordine:\n"+
+                                      "Circuito carta di credito: "+str(circuito)+"\n"+
+                                      "Numero carta di credito: "+str(numero_carta)+"\n"+
+                                      "Intestatario carta: "+str(intestatario_carta)+"\n"+
+                                      "Scadenza carta: "+str(scadenza)+"\n"+
+                                      "CVV carta: "+str(cvv)+"\n"
+                                      "Nome prodotto: "+str(nome_prodotto)+"\n"+
+                                      "Quantità: "+str(quantita)+"\n"+
+                                      "E-mail: "+str(email)+"\n"+
+                                      "Numero di telefono: "+str(numero_telefono)+"\n"+
+                                      "Indirizzo spedizione: "+str(indirizzo_spedizione)+" "+str(citta)+"\n"+
+                                      "CAP: "+str(cap))
+            return {"conferma_recap": slot_value}
+        if tracker.get_slot("conferma") == "no_recap":
+            return {"conferma_recap": slot_value}
+
+    def validate_conferma_ordine(
+        self,
+        slot_value: Any,
+        dispatcher: CollectingDispatcher,
+        tracker: Tracker,
+        domain: DomainDict,
+    ) -> Dict[Text, Any]:
+        """Validate 'conferma_ordine'."""
+
+        if tracker.get_slot("conferma_ordine") == "si_ordine":
+            client = MongoClient('mongodb+srv://admin:admin@cluster0.rh2yb.mongodb.net/myFirstDatabase?retryWrites=true&w=majority')
+            db = client.test_database
+            collection = db.test_collection
+            ordini = db.ordini
+
+            circuito = tracker.get_slot("circuito")
+            numero_carta = tracker.get_slot("numero_carta")
+            intestatario_carta = tracker.get_slot("intestatario_carta")
+            scadenza = tracker.get_slot("scadenza")
+            cvv = tracker.get_slot("cvv")
+            nome_prodotto = tracker.get_slot("nome_prodotto")
+            quantita = tracker.get_slot("quantita")
+            email = tracker.get_slot("email")
+            numero_telefono = tracker.get_slot("numero_telefono")
+            indirizzo_spedizione = tracker.get_slot("indirizzo_spedizione")
+            citta = tracker.get_slot("citta")
+            cap = tracker.get_slot("cap")
+                
+            ricevuta = {
+                    "numero_carta": numero_carta,
+                    "intestatario_carta": intestatario_carta,
+                    "scadenza": scadenza,
+                    "cvv": cvv,
+                    "nome_prodotto": nome_prodotto,
+                    "quantita": quantita,
+                    "email": email,
+                    "numero_telefono": numero_telefono,
+                    "indirizzo_spedizione": indirizzo_spedizione,
+                    "citta": citta,
+                    "cap": cap,
+                    "emissione_ricevuta" : datetime.today().strftime('%d/%m/%y')
+            }
+
+            #salva la ricevuta a db e ritorna l'id del documento appena creato
+            id_ricevuta = ordini.insert_one(ricevuta).inserted_id
+  
+            dispatcher.utter_message(text=f"L'ordine è stato inoltrato")
+            return {"conferma_ordine": slot_value}
+        else:
+            dispatcher.utter_message(text=f"L'ordine è stato annullato")
+            return {"conferma_ordine": slot_value}
+ 
+
+class ActionReset(Action):
+
+    def name(self) -> Text:
+        return "action_reset"
+
+    def run(self, dispatcher: CollectingDispatcher,
+            tracker: Tracker,
+            domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
+
+        return[AllSlotsReset()]

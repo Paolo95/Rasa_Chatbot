@@ -21,9 +21,8 @@ rules:
   - action: form_ordine
   - active_loop: null
   - slot_was_set:
-    - requested_slot: null
-  - action: utter_recap_ordine
-  - action: utter_submit
+    - requested_slot: null  
+  - action: action_reset
 
 - rule: Interruption_form_ordine
   condition:
@@ -33,4 +32,3 @@ rules:
   - action: utter_felice
   - action: form_ordine
   - active_loop: form_ordine
-

@@ -21,3 +21,4 @@ stories:
     - intent: conferma
   - action: action_deactivate_loop
   - active_loop: null
+  - action: action_reset
